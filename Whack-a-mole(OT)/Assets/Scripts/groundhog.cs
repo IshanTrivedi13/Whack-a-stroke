@@ -4,12 +4,90 @@ using UnityEngine;
 
 public class groundhog : MonoBehaviour
 {
+    [Header("Graphics")]
+    [SerializeField] private Sprite hog;
+    [SerializeField] private Sprite hogHelmet;
+    [SerializeField] private Sprite hogHit;
+    [SerializeField] private Sprite hogHelmetHit;
+    [SerializeField] private Sprite bomb;
+    [SerializeField] private Sprite bombHit;
+
+    [Header("GameManager")]
+    [SerializeField] private GameManager gameManager;
+
     // Groundhog positions 
-    private Vector2 startPosition = new Vector2(0f, -7.88f);
+    private Vector2 startPosition = new Vector2(0f, -13f);
     private Vector2 endPosition = Vector2.zero;
+
     // Groundhog duration
     private float showDuration = 0.5f;
     private float duration = 1f;
+
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider2D;
+    private Vector2 boxOffset;
+    private Vector2 boxSize;
+    private Vector2 boxOffsetHidden;
+    private Vector2 boxSizeHidden;
+
+    // groundhog Parameters
+    private bool hittable = true;
+    public enum HogType { Standard, Helmet, Bomb};
+    private HogType hogType;
+    private float hardRate = 0.25f;
+    private float bombRate = 0.2f;
+    private int lives;
+    private int hogIndex;
+
+    public void Activate() 
+    {
+        CreateNext();
+        StartCoroutine(ShowHide(startPosition, endPosition));
+    }
+
+    private void CreateNext()
+    {
+        float random = Random.Range(0f, 1f);
+        if (random < bombRate)
+        {
+            // create bomb
+            hogType = HogType.Bomb;
+            spriteRenderer.sprite = bomb;
+            lives = 1;
+        }
+        else
+        {
+            random = Random.Range(0f, 1f);
+            if (random < hardRate)
+            {
+                // create helmet hog
+                hogType = HogType.Helmet;
+                spriteRenderer.sprite = hogHelmet;
+                lives = 2;
+            }
+            else
+            {
+                // create normal hog
+                hogType = HogType.Standard;
+                spriteRenderer.sprite = hog;
+                lives = 1;
+            }
+        }
+        // Make it hittable 
+        hittable = true;
+    }
+
+    private void Awake() 
+    {
+        // component references
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
+        // collider values
+        boxOffset = boxCollider2D.offset;
+        boxSize = boxCollider2D.size;
+        boxOffsetHidden = new Vector2(boxOffset.x, -startPosition.y / 2f);
+        boxSizeHidden = new Vector2(boxSize.x, 0f);
+    }
 
     private IEnumerator ShowHide(Vector2 start, Vector2 end)
     {
@@ -21,12 +99,16 @@ public class groundhog : MonoBehaviour
         while (elapsed < showDuration)
         {
             transform.localPosition = Vector2.Lerp(start, end, elapsed/showDuration);
+            boxCollider2D.offset = Vector2.Lerp(boxOffsetHidden, boxOffset, elapsed / showDuration);
+            boxCollider2D.size = Vector2.Lerp(boxSizeHidden, boxSize, elapsed / showDuration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         // groundhog above the hole
         transform.localPosition = end;
+        boxCollider2D.offset = boxOffset;
+        boxCollider2D.size = boxSize;
 
         // groundhog still duration
         yield return new WaitForSeconds(duration);
@@ -36,15 +118,88 @@ public class groundhog : MonoBehaviour
         while (elapsed < showDuration)
         {
             transform.localPosition = Vector2.Lerp(end, start, elapsed/showDuration);
+            boxCollider2D.offset = Vector2.Lerp(boxOffset, boxOffsetHidden, elapsed / showDuration);
+            boxCollider2D.size = Vector2.Lerp(boxSize, boxSizeHidden, elapsed / showDuration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         // groundhog back under the hole
         transform.localPosition = start;
+        boxCollider2D.offset = boxOffsetHidden;
+        boxCollider2D.size = boxSizeHidden;
+
+        if(hittable)
+        {
+            hittable = false;
+            gameManager.Missed(hogIndex);
+        }
     }
-    private void Start() 
+
+    private void OnMouseDown() 
     {
-        StartCoroutine(ShowHide(startPosition, endPosition));
+        if (hittable)
+        {
+            switch(hogType)
+            {
+                case HogType.Standard:
+                    spriteRenderer.sprite = hogHit;
+                    gameManager.Whacked(hogIndex);
+                    // stop groundhog movement
+                    StopAllCoroutines();
+                    StartCoroutine(QuickHide());
+                    // turn off hittable for no duplicate score
+                    hittable = false;
+                    break;
+                case HogType.Helmet:
+                    if (lives == 2)
+                    {
+                        lives--;
+                    }
+                    else
+                    {
+                        spriteRenderer.sprite = hogHelmetHit;
+                        gameManager.Whacked(hogIndex);
+                        // stop groundhog movement
+                        StopAllCoroutines();
+                        StartCoroutine(QuickHide());
+                        // turn off hittable for no duplicate score
+                        hittable = false;
+                    }
+                    break;
+                case HogType.Bomb:
+                    spriteRenderer.sprite = bombHit;
+                    gameManager.Whacked(hogIndex);
+                    // stop bomb movement
+                    StopAllCoroutines();
+                    StartCoroutine(QuickHide());
+                    // turn off hittable for no duplicate score
+                    hittable = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private IEnumerator QuickHide()
+    {
+        yield return new WaitForSeconds(0.25f);
+        // So that another hog doesn't spawn
+        if (!hittable)
+        {
+            Hide();
+        }
+    }
+
+    public void Hide()
+    {
+        transform.localPosition = startPosition;
+        boxCollider2D.offset = boxOffsetHidden;
+        boxCollider2D.size = boxSizeHidden;
+    }
+    public void SetIndex(int index) 
+    {
+        hogIndex = index;
     }
 }
