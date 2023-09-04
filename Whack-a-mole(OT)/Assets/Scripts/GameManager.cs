@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<groundhog> hogs;
-    private HashSet<groundhog> currentHogs = new HashSet<groundhog>();
+    [SerializeField] private List<Alien> hogs;
+    private HashSet<Alien> currentHogs = new HashSet<Alien>();
+    int prevIndex = 0;
     private void Start() 
     {
         // Hide all the visible hogs.
@@ -24,16 +25,16 @@ public class GameManager : MonoBehaviour
         {
             // Choose a random hog.
             int index = Random.Range(0, hogs.Count);
-            if (!currentHogs.Contains(hogs[index])) 
+            if (!currentHogs.Contains(hogs[index]) && hogs[index] != hogs[prevIndex]) 
             {
                 currentHogs.Add(hogs[index]);
                 hogs[index].Activate();
+                prevIndex = index;
             }
         }
     }
     public void Whacked(int hogIndex) 
     {
-        Debug.Log("");
         currentHogs.Remove(hogs[hogIndex]);
     }
     public void Missed(int hogIndex) 

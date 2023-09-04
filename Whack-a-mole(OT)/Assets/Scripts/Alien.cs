@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class groundhog : MonoBehaviour
+public class Alien : MonoBehaviour
 {
     [Header("Graphics")]
     [SerializeField] private Sprite hog;
-    [SerializeField] private Sprite hogHelmet;
     [SerializeField] private Sprite hogHit;
-    [SerializeField] private Sprite hogHelmetHit;
     [SerializeField] private Sprite bomb;
     [SerializeField] private Sprite bombHit;
 
     [Header("GameManager")]
     [SerializeField] private GameManager gameManager;
+
+    [Header("Mechanics")]
+    [SerializeField] private float duration = 1f;
 
     // Groundhog positions 
     private Vector2 startPosition = new Vector2(0f, -13f);
@@ -21,7 +22,7 @@ public class groundhog : MonoBehaviour
 
     // Groundhog duration
     private float showDuration = 0.5f;
-    private float duration = 1f;
+    
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider2D;
@@ -32,11 +33,9 @@ public class groundhog : MonoBehaviour
 
     // groundhog Parameters
     private bool hittable = true;
-    public enum HogType { Standard, Helmet, Bomb};
+    public enum HogType { Standard, Bomb};
     private HogType hogType;
-    private float hardRate = 0.25f;
-    private float bombRate = 0.2f;
-    private int lives;
+    private float bombRate = 0.1f;
     private int hogIndex;
 
     public void Activate() 
@@ -53,25 +52,14 @@ public class groundhog : MonoBehaviour
             // create bomb
             hogType = HogType.Bomb;
             spriteRenderer.sprite = bomb;
-            lives = 1;
         }
         else
         {
-            random = Random.Range(0f, 1f);
-            if (random < hardRate)
-            {
-                // create helmet hog
-                hogType = HogType.Helmet;
-                spriteRenderer.sprite = hogHelmet;
-                lives = 2;
-            }
-            else
-            {
-                // create normal hog
-                hogType = HogType.Standard;
-                spriteRenderer.sprite = hog;
-                lives = 1;
-            }
+            
+            // create normal hog
+            hogType = HogType.Standard;
+            spriteRenderer.sprite = hog;
+            
         }
         // Make it hittable 
         hittable = true;
@@ -150,22 +138,6 @@ public class groundhog : MonoBehaviour
                     StartCoroutine(QuickHide());
                     // turn off hittable for no duplicate score
                     hittable = false;
-                    break;
-                case HogType.Helmet:
-                    if (lives == 2)
-                    {
-                        lives--;
-                    }
-                    else
-                    {
-                        spriteRenderer.sprite = hogHelmetHit;
-                        gameManager.Whacked(hogIndex);
-                        // stop groundhog movement
-                        StopAllCoroutines();
-                        StartCoroutine(QuickHide());
-                        // turn off hittable for no duplicate score
-                        hittable = false;
-                    }
                     break;
                 case HogType.Bomb:
                     spriteRenderer.sprite = bombHit;
