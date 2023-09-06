@@ -25,7 +25,7 @@ public class MenuController : MonoBehaviour
         Debug.Log("sceneswitch");
     }
 
-    public void Lvl34()
+    public void Lvl4()
     {
         SceneManager.LoadScene("Level_4");
         Debug.Log("sceneswitch");
@@ -44,12 +44,6 @@ public class MenuController : MonoBehaviour
     }
 
     public void Lvl7()
-    {
-        SceneManager.LoadScene("Level_3");
-        Debug.Log("sceneswitch");
-    }
-
-    public void Lvl3()
     {
         SceneManager.LoadScene("Level_7");
         Debug.Log("sceneswitch");
