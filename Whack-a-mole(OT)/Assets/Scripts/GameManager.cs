@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private float timer = 30f;
     private bool isGameActive = true;
 
+    private float score = 0;
+
     private void Start()
     {
         // Hide all the visible hogs.
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
 
     public void Whacked(int hogIndex)
     {
+        score++;
+        Debug.Log(score);
         currentHogs.Remove(hogs[hogIndex]);
     }
 
