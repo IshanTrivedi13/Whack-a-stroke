@@ -12,4 +12,5 @@ public class SettingScript : MonoBehaviour
         Debug.Log("sceneswitch");
     }
 
+
 }
