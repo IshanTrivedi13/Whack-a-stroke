@@ -7,11 +7,21 @@ public class Levels_page : MonoBehaviour
 
 {
 
-    public void Lvl_page()
+    public GameObjeck PausePanel;
+
     {
 
         SceneManager.LoadScene("LevelsPage");
         Debug.Log("sceneswitch");
     }
+
+    public void Continue()
+    {
+
+    PausePanel.SetActive(False);
+    Time.timeScale = T;
+
+    }
+
 
 }
