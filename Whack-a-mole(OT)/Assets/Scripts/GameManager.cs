@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<Alien> hogs;
+    [SerializeField] private Text UI_Score;
+    [SerializeField] private Text scoreText; // Add a reference to the Score UI Text component.
 
     private HashSet<Alien> currentHogs = new HashSet<Alien>();
     int prevIndex = 0;
@@ -60,11 +64,17 @@ public class GameManager : MonoBehaviour
     {
         score++;
         Debug.Log(score);
+        UI_Score.text = score.ToString("0");
         currentHogs.Remove(hogs[hogIndex]);
     }
 
     public void Missed(int hogIndex)
     {
         currentHogs.Remove(hogs[hogIndex]);
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = "Score: " + score.ToString();
     }
 }
