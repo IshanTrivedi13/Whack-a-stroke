@@ -24,6 +24,7 @@ public class __Pause__ : MonoBehaviour
     {
         string scene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scene);
+        Time.timeScale = 1f;
         Debug.Log("sceneswitch");
     }
 
