@@ -1364,6 +1364,7 @@ MonoBehaviour:
   - {fileID: 1734525235}
   timerText: {fileID: 342019964}
   scoreText: {fileID: 778472678}
+  finScoreDisplay: {fileID: 828774623}
 --- !u!1 &733067996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,7 +2409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1441338163
 MonoBehaviour:
   m_ObjectHideFlags: 0

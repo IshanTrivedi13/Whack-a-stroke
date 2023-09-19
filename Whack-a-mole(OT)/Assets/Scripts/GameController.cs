@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class GameController : MonoBehaviour
@@ -11,13 +12,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<Alien> hogs;
     [SerializeField] private Text timerText;
     [SerializeField] private Text scoreText; // Add a reference to the Score UI Text component.
-
+    [SerializeField] private TMPro.TextMeshProUGUI finScoreDisplay;
     private HashSet<Alien> currentHogs = new HashSet<Alien>();
     int prevIndex = 0;
 
     // Add timer variables
     private float timer = 30f;
     private bool isGameActive = true;
+
+    private float finalScore;
 
     private float score = 0;
 
@@ -46,6 +49,8 @@ public class GameController : MonoBehaviour
             {
                 // Game over logic here
                 isGameActive = false;
+                finalScore = score;
+                finScoreDisplay.text = $"{finalScore}";
                 complete.SetActive(true);
                 Debug.Log("Game Over");
             }
