@@ -625,6 +625,8 @@ MonoBehaviour:
   - {fileID: 995831616}
   - {fileID: 1950304287}
   - {fileID: 330966407}
+  timerText: {fileID: 1144885550}
+  scoreText: {fileID: 1810701174}
 --- !u!114 &995831616 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 583643001979361387, guid: 16c783ede38d4a041b0b06da3059a20c, type: 3}

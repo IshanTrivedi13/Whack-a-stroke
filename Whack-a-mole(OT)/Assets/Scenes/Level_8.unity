@@ -761,6 +761,8 @@ MonoBehaviour:
   - {fileID: 1392725470}
   - {fileID: 529684045}
   - {fileID: 1060012053}
+  timerText: {fileID: 70825155}
+  scoreText: {fileID: 1681835385}
 --- !u!1001 &1060012052
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -141,7 +141,7 @@ public class Alien : MonoBehaviour
                     break;
                 case HogType.Bomb:
                     spriteRenderer.sprite = bombHit;
-                    gameManager.Whacked(hogIndex);
+                    gameManager.BombHit(hogIndex);
                     // stop bomb movement
                     StopAllCoroutines();
                     StartCoroutine(QuickHide());

@@ -442,6 +442,8 @@ MonoBehaviour:
   - {fileID: 988611385}
   - {fileID: 1745405699}
   - {fileID: 1400338930}
+  timerText: {fileID: 401037299}
+  scoreText: {fileID: 301623240}
 --- !u!4 &367350367
 Transform:
   m_ObjectHideFlags: 0

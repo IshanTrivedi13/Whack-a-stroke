@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<Alien> hogs;
-    [SerializeField] private Text UI_Score;
+    [SerializeField] private Text timerText;
     [SerializeField] private Text scoreText; // Add a reference to the Score UI Text component.
 
     private HashSet<Alien> currentHogs = new HashSet<Alien>();
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
         // Remove any old game state.
         currentHogs.Clear();
+        scoreText.text = "0";
     }
 
     public void Update()
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
                 isGameActive = false;
                 Debug.Log("Game Over");
             }
+
+            timerText.text = $"{(int)timer % 60:D2}";
 
             if (currentHogs.Count <= 0.5)
             {
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         score++;
         Debug.Log(score);
-        UI_Score.text = score.ToString("0");
+        scoreText.text = $"{score}";
         currentHogs.Remove(hogs[hogIndex]);
     }
 
@@ -73,8 +76,10 @@ public class GameManager : MonoBehaviour
         currentHogs.Remove(hogs[hogIndex]);
     }
 
-    private void UpdateScoreText()
+    public void BombHit(int hogIndex)
     {
-        scoreText.text = "Score: " + score.ToString();
+        score -= 2;
+        scoreText.text = $"{score}";
+        currentHogs.Remove(hogs[hogIndex]);
     }
 }
