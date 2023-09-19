@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Settings : MonoBehaviour
-{ 
+public class __Pause__ : MonoBehaviour
+{
+
+    [SerializeField] GameObject pauseScreen;
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseScreen.SetActive(true);
+
+    }
+
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
     }
 
     public void Restart()

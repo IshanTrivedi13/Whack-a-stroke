@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GameManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
+    [SerializeField] GameObject complete;
+
     [SerializeField] private List<Alien> hogs;
     [SerializeField] private Text timerText;
     [SerializeField] private Text scoreText; // Add a reference to the Score UI Text component.
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
             {
                 // Game over logic here
                 isGameActive = false;
+                complete.SetActive(true);
                 Debug.Log("Game Over");
             }
 
