@@ -1240,7 +1240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &637240504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2714f7e805f0bb34e8422913187f0d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  complete: {fileID: 0}
+  complete: {fileID: 251538742}
   hogs:
   - {fileID: 302256773}
   - {fileID: 1482678184}
@@ -1728,7 +1728,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1441338163}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_TargetAssemblyTypeName: __Pause__, Assembly-CSharp
         m_MethodName: Level_page
         m_Mode: 1
         m_Arguments:
@@ -2129,6 +2129,7 @@ GameObject:
   - component: {fileID: 1441338165}
   - component: {fileID: 1441338164}
   - component: {fileID: 1441338163}
+  - component: {fileID: 1441338168}
   m_Layer: 5
   m_Name: Pause Canvas
   m_TagString: Untagged
@@ -2233,6 +2234,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1441338168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441338162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cde4d16f2a2b744bac8eefe60441ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseScreen: {fileID: 0}
 --- !u!114 &1482678184 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 583643001979361387, guid: 16c783ede38d4a041b0b06da3059a20c, type: 3}
@@ -2626,7 +2640,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1441338163}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_TargetAssemblyTypeName: __Pause__, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -2905,7 +2919,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1441338163}
         m_TargetAssemblyTypeName: __Pause__, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
