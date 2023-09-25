@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class __Pause__ : MonoBehaviour
+public class __Pause__Alien : MonoBehaviour
 {
 
     [SerializeField] GameObject pauseScreen;

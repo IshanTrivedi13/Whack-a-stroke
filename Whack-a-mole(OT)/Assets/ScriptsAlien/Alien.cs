@@ -11,7 +11,7 @@ public class Alien : MonoBehaviour
     [SerializeField] private Sprite bombHit;
 
     [Header("GameManager")]
-    [SerializeField] private GameController gameManager;
+    [SerializeField] private GameControllerAlien gameManager;
 
     [Header("Mechanics")]
     [SerializeField] private float duration = 1f;

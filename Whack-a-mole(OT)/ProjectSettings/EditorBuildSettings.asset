@@ -9,42 +9,42 @@ EditorBuildSettings:
     path: Assets/Scenes/PrototypeLevel.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/LevelsPage.unity
+    path: Assets/Alien_scenes/AlienLevelsPage.unity
     guid: 7f2592ecea621be4e89569bb5bb1fbd2
   - enabled: 1
-    path: Assets/Scenes/Level_1.unity
+    path: Assets/Alien_scenes/AlienLevel_1.unity
     guid: 2515b56fe8c064a4b8d577d74838245a
   - enabled: 1
-    path: Assets/Scenes/Level_2.unity
+    path: Assets/Alien_scenes/AlienLevel_2.unity
     guid: def7915e27fe5a7408f57ef7ec699ad5
   - enabled: 1
-    path: Assets/Scenes/SettingsPage.unity
+    path: Assets/Alien_scenes/AlienSettingsPage.unity
     guid: 833fb4613521ca748917fd5f5a4e4c1d
   - enabled: 1
-    path: Assets/Scenes/Level_3.unity
+    path: Assets/Alien_scenes/AlienLevel_3.unity
     guid: f73d6bcfc0d35b34682a336a403b68e3
   - enabled: 1
-    path: Assets/Scenes/Level_4.unity
+    path: Assets/Alien_scenes/AlienLevel_4.unity
     guid: 525c49f9261dca64c93f4ed55aec5a3d
   - enabled: 1
-    path: Assets/Scenes/Level_5.unity
+    path: Assets/Alien_scenes/AlienLevel_5.unity
     guid: 56b031eff4280d348a8cf572c965c478
   - enabled: 1
-    path: Assets/Scenes/Level_6.unity
+    path: Assets/Alien_scenes/AlienLevel_6.unity
     guid: e84ab2a6778c9304688f8a6e63e352db
   - enabled: 1
-    path: Assets/Scenes/Level_7.unity
+    path: Assets/Alien_scenes/AlienLevel_7.unity
     guid: b3b21a1096faaf342a6f9056d4d78268
   - enabled: 1
-    path: Assets/Scenes/Level_8.unity
+    path: Assets/Alien_scenes/AlienLevel_8.unity
     guid: 98fca02adb543664d9a47b74ad20829f
   - enabled: 1
-    path: Assets/Scenes/Level_9.unity
+    path: Assets/Alien_scenes/AlienLevel_9.unity
     guid: 5c6198147eaf09f4589b78878ec03928
   - enabled: 1
-    path: Assets/Scenes/Level_10.unity
+    path: Assets/Alien_scenes/AlienLevel_10.unity
     guid: bcf2a9ec5a8d743408dd394b6bf4c6b9
   - enabled: 1
-    path: Assets/Scenes/Completed.unity
+    path: Assets/Alien_scenes/Alien_Completed.unity
     guid: 09c9d567d2cf21d43aa247a512ed5667
   m_configObjects: {}

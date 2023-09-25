@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class GameController : MonoBehaviour
+public class GameControllerAlien : MonoBehaviour
 {
     [SerializeField] GameObject complete;
 
